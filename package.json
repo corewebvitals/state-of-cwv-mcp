@@ -1,0 +1,44 @@
+{
+  "name": "state-of-cwv-mcp",
+  "version": "1.0.1",
+  "mcpName": "io.github.corewebvitals/state-of-cwv",
+  "description": "Core Web Vitals metrics by CMS, CDN, and framework — free remote MCP, no auth.",
+  "type": "module",
+  "bin": {
+    "state-of-cwv-mcp": "src/index.js"
+  },
+  "main": "src/index.js",
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE",
+    "Dockerfile",
+    "server.json"
+  ],
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "core-web-vitals",
+    "lcp",
+    "inp",
+    "cls",
+    "web-performance"
+  ],
+  "author": "corewebvitals.io",
+  "license": "MIT",
+  "homepage": "https://www.corewebvitals.io/state-of-cwv",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corewebvitals/state-of-cwv-mcp.git"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "zod": "^3.24.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

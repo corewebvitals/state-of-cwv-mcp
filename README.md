@@ -1,12 +1,14 @@
 # State of Web Vitals MCP
 
-Free remote MCP for Core Web Vitals and technique metrics from Chrome field data plus a multi-site crawl. Same numbers as the public [State of Web Vitals explorer](https://www.corewebvitals.io/state-of-cwv/explorer).
+[![corewebvitals/state-of-cwv-mcp MCP server](https://glama.ai/mcp/servers/corewebvitals/state-of-cwv-mcp/badges/score.svg)](https://glama.ai/mcp/servers/corewebvitals/state-of-cwv-mcp)
 
-Hosted endpoint: `https://www.corewebvitals.io/api/state-of-cwv/mcp`  
-Registry: `io.github.corewebvitals/state-of-cwv`  
-No install, no API key.
+Free MCP for Core Web Vitals and technique metrics from Chrome field data plus a multi-site crawl. Same numbers as the public [State of Web Vitals explorer](https://www.corewebvitals.io/state-of-cwv/explorer).
 
-This repo holds the public connector docs and registry manifest. You connect your MCP client directly to the hosted endpoint.
+**Hosted endpoint (preferred):** `https://www.corewebvitals.io/api/state-of-cwv/mcp`  
+**Registry:** `io.github.corewebvitals/state-of-cwv`  
+No install, no API key for the remote URL.
+
+This repo also ships a **stdio proxy** (Dockerfile) for directories and inspectors that need a container that starts and answers `tools/list`. The proxy forwards to the hosted endpoint.
 
 ## What this is
 
@@ -24,7 +26,7 @@ This repo holds the public connector docs and registry manifest. You connect you
 
 None. Public research data. Credit [corewebvitals.io](https://www.corewebvitals.io/state-of-cwv) when you use the numbers.
 
-## Connecting
+## Connecting (remote — recommended)
 
 ### Claude Code
 
@@ -45,13 +47,19 @@ claude mcp add --transport http state-of-cwv https://www.corewebvitals.io/api/st
 }
 ```
 
-### Curl
+## Connecting (local stdio / Docker)
 
 ```bash
-curl -s -X POST https://www.corewebvitals.io/api/state-of-cwv/mcp \
-  -H 'Content-Type: application/json' \
-  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"get_metrics","arguments":{"metrics":"lcp,good_all3","group_by":"cms","min_sites":100}}}'
+npm install
+npm start
 ```
+
+```bash
+docker build -t state-of-cwv-mcp .
+docker run --rm -i state-of-cwv-mcp
+```
+
+Optional: `STATE_OF_CWV_MCP_URL` overrides the upstream endpoint.
 
 ## Attribution
 
@@ -67,8 +75,9 @@ Short line: `Data: State of Web Vitals (corewebvitals.io)`
 - Explorer: https://www.corewebvitals.io/state-of-cwv/explorer
 - Methodology: https://www.corewebvitals.io/state-of-cwv/methodology
 - Discovery: https://www.corewebvitals.io/.well-known/mcp.json
-- Official MCP Registry: search `io.github.corewebvitals/state-of-cwv`
+- Official MCP Registry: `io.github.corewebvitals/state-of-cwv`
+- Glama: https://glama.ai/mcp/servers/corewebvitals/state-of-cwv-mcp
 
 ## License
 
-Documentation in this repository is MIT. The data product and website remain © corewebvitals.io.
+Documentation and connector code in this repository are MIT. The data product and website remain © corewebvitals.io.
