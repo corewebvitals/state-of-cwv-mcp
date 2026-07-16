@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.corewebvitals/state-of-cwv",
+  "title": "State of Web Vitals",
+  "description": "Core Web Vitals metrics by CMS, CDN, and framework — free remote MCP, no auth.",
+  "version": "1.0.1",
+  "repository": {
+    "url": "https://github.com/corewebvitals/state-of-cwv-mcp",
+    "source": "github"
+  },
+  "websiteUrl": "https://www.corewebvitals.io/state-of-cwv",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://www.corewebvitals.io/api/state-of-cwv/mcp"
+    }
+  ]
+}
